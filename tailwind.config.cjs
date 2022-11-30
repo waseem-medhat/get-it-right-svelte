@@ -2,7 +2,9 @@
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: { share: 'Share Tech' }
+		}
 	},
 	plugins: []
 };
