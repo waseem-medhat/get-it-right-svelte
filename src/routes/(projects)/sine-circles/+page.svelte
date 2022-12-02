@@ -17,20 +17,15 @@
 </script>
 
 <h2 class="text-6xl font-share mb-10">Sine Circles</h2>
-<svg width="960" height="300" class="bg-blue-900">
+<svg width="960" height="300" class="bg-black">
 	<filter id="glow">
 		<feGaussianBlur stdDeviation="3" />
 	</filter>
 
 	{#each data as { cx, cy }}
-		<circle {cx} {cy} r="20" fill="beige" transition:fade|local={{ duration: 500 }} />
-		<circle
-			{cx}
-			{cy}
-			r="20"
-			fill="beige"
-			filter="url('#glow')"
-			transition:fade|local={{ duration: 500 }}
-		/>
+		<g transition:fade|local={{ duration: 500 }}>
+			<circle {cx} {cy} r="20" fill="#fff" />
+			<circle {cx} {cy} r="20" fill="#fff" filter="url('#glow')" />
+		</g>
 	{/each}
 </svg>
