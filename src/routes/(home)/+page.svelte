@@ -1,4 +1,4 @@
-<section class="container mt-16 pl-28">
+<section class="w-screen min-h-screen p-20 border-[40px] border-black">
 	<section class="mb-10 flex items-center space-x-16">
 		<img src="/get_it_right.png" alt="Get it Right" class="h-72" />
 		<span class="text-8xl font-light">+</span>
