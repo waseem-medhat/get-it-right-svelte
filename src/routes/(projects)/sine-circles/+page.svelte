@@ -23,14 +23,14 @@
 	</filter>
 
 	{#each data as { cx, cy }}
-		<circle {cx} {cy} r="20" fill="beige" transition:fade={{ duration: 500 }} />
+		<circle {cx} {cy} r="20" fill="beige" transition:fade|local={{ duration: 500 }} />
 		<circle
 			{cx}
 			{cy}
 			r="20"
 			fill="beige"
 			filter="url('#glow')"
-			transition:fade={{ duration: 500 }}
+			transition:fade|local={{ duration: 500 }}
 		/>
 	{/each}
 </svg>
