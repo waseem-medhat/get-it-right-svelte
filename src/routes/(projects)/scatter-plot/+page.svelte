@@ -1,7 +1,6 @@
 <script>
-	import { axisBottom, axisLeft, csv, extent, format, scaleLinear, select } from 'd3';
-
-	const csvUrl = 'https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/iris.csv';
+	import { axisBottom, axisLeft, csv, csvParse, extent, format, scaleLinear, select } from 'd3';
+	export let data;
 
 	const width = 960;
 	const height = 300;
@@ -19,24 +18,23 @@
 		return d;
 	};
 
-	let data = [];
-	csv(csvUrl, parseRow).then((dataRes) => (data = dataRes));
+	$: vizData = csvParse(data.iris).map(parseRow);
 
 	$: xSc = scaleLinear()
-		.domain(extent(data, xAcc))
+		.domain(extent(vizData, xAcc))
 		.range([m.left, width - m.right]);
 
 	let xAxisG;
 	$: if (xAxisG) select(xAxisG).call(axisBottom(xSc));
 
 	$: ySc = scaleLinear()
-		.domain(extent(data, yAcc))
+		.domain(extent(vizData, yAcc))
 		.range([height - m.bottom, m.top]);
 
 	let yAxisG;
 	$: if (yAxisG) select(yAxisG).call(axisLeft(ySc).ticks(5).tickFormat(format(',.1f')));
 
-	$: coords = data.map((d) => ({ cx: xSc(xAcc(d)), cy: ySc(yAcc(d)) }));
+	$: coords = vizData.map((d) => ({ cx: xSc(xAcc(d)), cy: ySc(yAcc(d)) }));
 </script>
 
 <h2 class="text-6xl font-share mb-10">Scatter Plot</h2>
